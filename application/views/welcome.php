@@ -2,7 +2,7 @@
     <section class="header-top">
         <div class="container">
             <h1 class="header-top-title">Онлайн-сервис <strong>“Успешное собеседование”</strong></h1>
-            <a href="#" class="btn btn-large"><i class="icon icon-phone"></i> Заказать звонок</a>
+            <a href="#" class="btn btn-large" ng-click="showCallMe()"><i class="icon icon-phone"></i> Заказать звонок</a>
             <ul class="benefits">
                 <li class="benefits-moneyback"><strong>Полный возврат средств</strong> если вы остались недовольны оказанной услугой.</li>
                 <li class="benefits-warranty"><strong>Гарантия результата</strong> через нас прошло более 300 людей, получивших в итоге желаемую работу.</li>
@@ -10,9 +10,9 @@
             </ul>
             <form class="free-consult-form free-consult-form-top">
                 <h3>Бесплатная консультация</h3>
-                <input type="text" placeholder="Ваше имя" class="form-control form-control-block">
-                <input type="text" placeholder="Skype" class="form-control form-control-block">
-                <input type="email" placeholder="E-mail" class="form-control form-control-block">
+                <input ng-model="name" type="text" placeholder="Ваше имя" class="form-control form-control-block" required>
+                <input ng-model="skype" type="text" placeholder="Skype" class="form-control form-control-block">
+                <input ng-model="email" type="email" placeholder="E-mail" class="form-control form-control-block" required>
                 <input type="submit" value="Записаться" class="btn btn-medium btn-block">
                 <div class="shadow shadow-consult"></div>
             </form>
@@ -99,9 +99,9 @@
         </section>
         <form class="free-consult-form2">
             <h3 class="free-consult-form2-title">Бесплатная консультация</h3>
-            <input type="text" placeholder="Ваше имя" class="form-control">
-            <input type="text" placeholder="Skype" class="form-control">
-            <input type="text" placeholder="E-mail" class="form-control">
+            <input required ng-model="name" type="text" placeholder="Ваше имя" class="form-control">
+            <input ng-model="skype" type="text" placeholder="Skype" class="form-control">
+            <input required ng-model="email" type="email" placeholder="E-mail" class="form-control">
             <input type="submit" value="Записаться" class="btn btn-medium">
             <div class="shadow shadow-big-consult"></div>
         </form>
@@ -224,11 +224,12 @@
                     </div>
                 </div>
             </div>
+            <a href="#" class="btn btn-review" ng-click="showReview()">Написать отзыв</a>
             <form class="free-consult-form free-consult-form-replies">
                 <h3>Бесплатная консультация</h3>
-                <input type="text" placeholder="Ваше имя" class="form-control form-control-block">
+                <input required ng-model="name" type="text" placeholder="Ваше имя" class="form-control form-control-block">
                 <input type="text" placeholder="Skype" class="form-control form-control-block">
-                <input type="email" placeholder="E-mail" class="form-control form-control-block">
+                <input required ng-model="email" type="email" placeholder="E-mail" class="form-control form-control-block">
                 <input type="submit" value="Записаться" class="btn btn-medium btn-block">
                 <div class="shadow shadow-consult"></div>
             </form>
