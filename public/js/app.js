@@ -15,6 +15,21 @@ function CallCtrl($scope, $http, dialog) {
     }
 }
 
+function ReviewCtrl($scope, $http, dialog) {
+    $scope.sendReview = function () {
+        $scope.reviewed = true;
+        $http.post('/reviews', 'name=' + $scope.reviewName + '&prof=' + $scope.reviewProf + '&text=' + $scope.reviewText)
+            .success(function (resp) {
+            })
+            .error(function () {
+                $scope.reviewed = false;
+            });
+    }
+    $scope.close = function () {
+        dialog.close();
+    }
+}
+
 function MainCtrl($scope, $dialog, $http) {
     // Inlined template for demo
     var callTemplate = '<div class="modal-callme">' +
@@ -32,13 +47,18 @@ function MainCtrl($scope, $dialog, $http) {
         '</div>',
         reviewTemplate = '<div class="modal-review">' +
             '<h3>Отзыв</h3>' +
-            '<form>' +
+            '<div class="message" ng-show="reviewed">' +
+            'Спасибо за ваш отзыв.' +
+            '</div>' +
+            '<div ng-hide="reviewed">' +
+            '<form ng-submit="sendReview()" name="reviewForm">' +
             '<input ng-model="reviewName" required type="text" class="form-control form-control-block" placeholder="Ваше имя">' +
             '<input ng-model="reviewProf" type="text" class="form-control form-control-block" placeholder="Ваша профессия">' +
             '<div style="text-align: left"><label>Ваше фото</label> <input type="file"></div>' +
-            '<textarea ng-model="reviewText" required ng-min-length="50" ng-max-length="250" class="form-control form-control-block" placeholder="Отзыв"></textarea>' +
+            '<textarea ng-minlength="50" ng-maxlength="250" ng-model="reviewText" required class="form-control form-control-block" placeholder="Отзыв"></textarea>' +
             '<input type="submit" value="Отправить отзыв" class="btn btn-large">' +
-            '</form>' +
+            '</form></div>' +
+            '<a href="#" class="btn btn-large" ng-click="close()" ng-show="reviewed">Закрыть</a>' +
             '</div>';
 
     $scope.consulted = false;
@@ -55,7 +75,8 @@ function MainCtrl($scope, $dialog, $http) {
         backdrop: true,
         keyboard: true,
         backdropClick: true,
-        template:  reviewTemplate // OR: templateUrl: 'path/to/view.html'
+        template:  reviewTemplate, // OR: templateUrl: 'path/to/view.html'
+        controller: 'ReviewCtrl'
     };
     var d;
     $scope.showCallMe = function () {
@@ -79,6 +100,21 @@ function MainCtrl($scope, $dialog, $http) {
             .error(function () {
                 $scope.consulted = false;
             });
+    }
+    $scope.currentReview = 0;
+    $http.get('/reviews')
+        .success(function (resp) {
+            $scope.reviews = resp;
+            $scope.review = $scope.reviews[0];
+        });
+    $scope.$watch('currentReview', function (value) {
+        $scope.review = $scope.reviews[value];
+    });
+    $scope.nextReview = function () {
+        $scope.currentReview++;
+    }
+    $scope.prevReview = function () {
+        $scope.currentReview--;
     }
 
 }

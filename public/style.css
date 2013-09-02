@@ -599,6 +599,7 @@ hr {
 	top:50%;
 	margin-top:-21px;
 	display:block;
+    cursor: pointer;
 }
 .slider-larr {
 	background:url(images/larr.png) no-repeat center;
@@ -675,7 +676,7 @@ footer a {
 .modal-callme .form-control {
     margin: 20px 10px 20px;
 }
-input.ng-invalid {
+input.ng-invalid, textarea.ng-invalid {
     border-color: red;
 }
 .placeholder {

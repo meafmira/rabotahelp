@@ -216,19 +216,19 @@
         </ul>
         <section class="replies">
             <div class="replies-slider">
-                <div class="slider-larr"></div>
-                <div class="slider-rarr"></div>
+                <div class="slider-larr" ng-click="prevReview()" ng-show="currentReview != 0"></div>
+                <div class="slider-rarr" ng-click="nextReview()" ng-show="currentReview != reviews.length - 1"></div>
                 <div class="replies-slider-container">
                     <div class="replies-slider-slides">
                         <div class="replies-slider-slide">
                             <img class="reply-avatar" src="/public/images/no_avatar.jpg">
                             <div class="reply-text">
                                 <div class="lquote"></div>
-                                Здесь отличный выбор айфонов! Радует то, что товар можно обменять при обнаружении брака и оплата при доставке. Покупала iPhone 4S 64Gb. Мне понравилось! Буду рекомендовать этот магазин всем моим знакомым.
+                                {{review.review}}
                             </div>
                             <div class="reply-author">
-                                <strong>Рязанцева Светлана</strong>
-                                Визажист
+                                <strong>{{review.name}}</strong>
+                                {{review.prof}}
                             </div>
                         </div>
                     </div>
