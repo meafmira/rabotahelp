@@ -144,6 +144,7 @@ h3 {
 	display:block;
 	width:100%;
 	box-sizing:border-box;
+    -moz-box-sizing: border-box;
 }
 .content-title {
 	font-size:48px;
