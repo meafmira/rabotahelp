@@ -712,3 +712,7 @@ input.ng-invalid {
 .modal-review label {
     color: #ccc;
 }
+.message {
+    font-style: italic;
+    margin: 10px 0;
+}

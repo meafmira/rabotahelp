@@ -1,6 +1,6 @@
 var app = angular.module('rabotahelp', ['ui.bootstrap']);
 
-function MainCtrl($scope, $dialog) {
+function MainCtrl($scope, $dialog, $http) {
     // Inlined template for demo
     var callTemplate = '<div class="modal-callme">' +
         '<h3>Заказать звонок</h3>' +
@@ -21,6 +21,8 @@ function MainCtrl($scope, $dialog) {
             '</form>' +
             '</div>';
 
+    $scope.consulted = false;
+
     $scope.opts = {
         backdrop: true,
         keyboard: true,
@@ -40,6 +42,17 @@ function MainCtrl($scope, $dialog) {
     $scope.showReview = function () {
         var d = $dialog.dialog($scope.opts2);
         d.open();
+    }
+    $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+    $scope.sendConsult = function () {
+        $scope.consulted = true;
+        $http.post('/consults', 'name=' + $scope.name + '&skype=' + $scope.skype + '&email=' + $scope.email)
+            .success(function (resp) {
+
+            })
+            .error(function () {
+                $scope.consulted = false;
+            });
     }
 
 
