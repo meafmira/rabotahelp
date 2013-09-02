@@ -132,6 +132,11 @@ Route::set('consults', 'consults')
        'controller' => 'consults',
         'action' => 'index'
     ));
+Route::set('calls', 'calls')
+    ->defaults(array(
+       'controller' => 'calls',
+        'action' => 'index'
+    ));
 
 Route::set('default', '(<controller>(/<action>(/<id>)))')
 	->defaults(array(

@@ -221,7 +221,7 @@
                 <div class="replies-slider-container">
                     <div class="replies-slider-slides">
                         <div class="replies-slider-slide">
-                            <img class="reply-avatar" src="images/avatar.jpg">
+                            <img class="reply-avatar" src="/public/images/no_avatar.jpg">
                             <div class="reply-text">
                                 <div class="lquote"></div>
                                 Здесь отличный выбор айфонов! Радует то, что товар можно обменять при обнаружении брака и оплата при доставке. Покупала iPhone 4S 64Gb. Мне понравилось! Буду рекомендовать этот магазин всем моим знакомым.
