@@ -17,7 +17,7 @@
                 <input ng-model="name" type="text" placeholder="Ваше имя" class="form-control form-control-block" required>
                 <input ng-model="skype" type="text" placeholder="Skype" class="form-control form-control-block">
                 <input ng-model="email" type="email" placeholder="E-mail" class="form-control form-control-block" required>
-                <input type="submit" value="Записаться" class="btn btn-medium btn-block">
+                <input type="submit" value="Записаться" class="btn btn-medium btn-block" style="margin-top:15px">
                 </div>
                 <div class="shadow shadow-consult"></div>
             </form>
@@ -56,10 +56,10 @@
         </ul>
     </div>
 </section>
-<section class="block">
+<section class="block what-present">
     <div class="container">
-        <h1 class="content-title"><span>И что вы предлагаете?</span></h1>
-        <h2 class="content-subtitle">Мы предлагаем вам воспользоваться <strong>платной</strong> услугой, которая поможет получить желаемую работу.</h2>
+        <h1 class="content-title" style="margin-bottom:23px"><span>И что вы предлагаете?</span></h1>
+        <h2 class="content-subtitle">Мы предлагаем вам воспользоваться <strong>платной</strong> услугой,<br> которая поможет получить желаемую работу.</h2>
         <section class="helps">
             <div class="helps-block helps-block-red">
                 <h4 class="helps-block-title">БЕЗ нашей помощи</h4>
@@ -72,7 +72,7 @@
                 </ul>
                 <hr class="hr-red">
                 <div class="helps-block-earn">
-                    В год вы заработаете <strong>360 000  <span class="rouble">d</span></strong>
+                    В год вы заработаете <strong>360 000  <span class="rouble">b</span></strong>
                     <i class="money-icon money-icon-red"></i>
                     <i class="money-icon money-icon-red"></i>
                     <i class="money-icon money-icon-red"></i>
@@ -90,7 +90,7 @@
                 </ul>
                 <hr class="hr-green">
                 <div class="helps-block-earn">
-                    В год вы заработаете <strong>720 000 <span class="rouble">d</span></strong>
+                    А это уже в год <strong>720 000 <span class="rouble">d</span></strong>
                     <i class="money-icon money-icon-green"></i>
                     <i class="money-icon money-icon-green"></i>
                     <i class="money-icon money-icon-green"></i>
@@ -111,7 +111,7 @@
             <input required ng-model="name" type="text" placeholder="Ваше имя" class="form-control">
             <input ng-model="skype" type="text" placeholder="Skype" class="form-control">
             <input required ng-model="email" type="email" placeholder="E-mail" class="form-control">
-            <input type="submit" value="Записаться" class="btn btn-medium">
+            <input type="submit" value="Записаться" class="btn btn-medium" style="padding: 0 105px;">
             </div>
             <div class="shadow shadow-big-consult"></div>
         </form>
@@ -185,7 +185,7 @@
         </ul>
     </div>
 </section>
-<section class="block">
+<section class="block some-reasons">
     <div class="container">
         <h1 class="content-title"><span>Несколько причин обратиться к нам</span></h1>
         <ul class="reasons">
@@ -249,7 +249,7 @@
                 <div class="shadow shadow-consult"></div>
             </form>
         </section>
-        <h1 class="content-title">&nbsp;</h1>
+        <h1 class="content-title" style="margin: 0; line-height: 4px;">&nbsp;</h1>
         <footer>
             Онлайн-Сервис “УСПЕШНОЕ СОБЕСЕДОВАНИЕ”<br>
             <a href="#">www.rabotahelp.ru</a>
