@@ -17,7 +17,7 @@
                 <input ng-model="name" type="text" placeholder="Ваше имя" class="form-control form-control-block" required>
                 <input ng-model="skype" type="text" placeholder="Skype" class="form-control form-control-block">
                 <input ng-model="email" type="email" placeholder="E-mail" class="form-control form-control-block" required>
-                <input type="submit" value="Записаться" class="btn btn-medium btn-block" style="margin-top:15px">
+                <input type="submit" value="Записаться" class="btn btn-medium btn-block" style="margin-top:15px" ng-click="check($event)">
                 </div>
                 <div class="shadow shadow-consult"></div>
             </form>
@@ -111,7 +111,7 @@
             <input required ng-model="name" type="text" placeholder="Ваше имя" class="form-control">
             <input ng-model="skype" type="text" placeholder="Skype" class="form-control">
             <input required ng-model="email" type="email" placeholder="E-mail" class="form-control">
-            <input type="submit" value="Записаться" class="btn btn-medium" style="padding: 0 105px;">
+            <input type="submit" value="Записаться" class="btn btn-medium" style="padding: 0 105px;" ng-click="check($event)">
             </div>
             <div class="shadow shadow-big-consult"></div>
         </form>
@@ -234,7 +234,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#" class="btn btn-review" ng-click="showReview()">Написать отзыв</a>
+            <a href="#" class="btn btn-review" ng-click="showReview($event)">Написать отзыв</a>
             <form class="free-consult-form free-consult-form-replies" ng-submit="sendConsult()">
                 <h3>Бесплатная консультация</h3>
                 <div class="message" ng-show="consulted">
@@ -244,7 +244,7 @@
                 <input required ng-model="name" type="text" placeholder="Ваше имя" class="form-control form-control-block">
                 <input type="text" placeholder="Skype" class="form-control form-control-block">
                 <input required ng-model="email" type="email" placeholder="E-mail" class="form-control form-control-block">
-                <input type="submit" value="Записаться" class="btn btn-medium btn-block">
+                <input type="submit" value="Записаться" class="btn btn-medium btn-block" ng-click="check($event)">
                 </div>
                 <div class="shadow shadow-consult"></div>
             </form>

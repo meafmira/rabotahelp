@@ -41,7 +41,7 @@ function MainCtrl($scope, $dialog, $http) {
         '<form ng-submit="sendCall()" name="callForm">' +
         '<input type="text" ng-model="callName" class="form-control" placeholder="Ваше имя" required>' +
         '<input type="text" ng-model="callPhone" class="form-control" placeholder="Ваш телефон" required><br>' +
-        '<input type="submit" value="Заказать" class="btn btn-large">' +
+        '<input type="submit" value="Заказать" class="btn btn-large" ng-click="check($event)">' +
         '</form></div>' +
         '<a href="#" class="btn btn-large" ng-click="close()" ng-show="called">Закрыть</a>' +
         '</div>',
@@ -56,7 +56,7 @@ function MainCtrl($scope, $dialog, $http) {
             '<input ng-model="reviewProf" type="text" class="form-control form-control-block" placeholder="Ваша профессия">' +
             '<div style="text-align: left"><label>Ваше фото</label> <input type="file"></div>' +
             '<textarea ng-minlength="50" ng-maxlength="250" ng-model="reviewText" required class="form-control form-control-block" placeholder="Отзыв"></textarea>' +
-            '<input type="submit" value="Отправить отзыв" class="btn btn-large">' +
+            '<input type="submit" value="Отправить отзыв" class="btn btn-large" ng-click="check($event)">' +
             '</form></div>' +
             '<a href="#" class="btn btn-large" ng-click="close()" ng-show="reviewed">Закрыть</a>' +
             '</div>';
@@ -79,6 +79,10 @@ function MainCtrl($scope, $dialog, $http) {
         controller: 'ReviewCtrl'
     };
     var d;
+    $scope.check = function ($event) {
+        var $el = angular.element($event.target);
+        $el.parent().parent().addClass('check');
+    };
     $scope.showCallMe = function () {
         d = $dialog.dialog($scope.opts);
         d.open();
@@ -86,9 +90,10 @@ function MainCtrl($scope, $dialog, $http) {
     $scope.closeCall = function () {
         dialog.close();
     }
-    $scope.showReview = function () {
+    $scope.showReview = function ($event) {
         var d = $dialog.dialog($scope.opts2);
         d.open();
+        $event.preventDefault();
     }
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
     $scope.sendConsult = function () {
@@ -108,7 +113,9 @@ function MainCtrl($scope, $dialog, $http) {
             $scope.review = $scope.reviews[0];
         });
     $scope.$watch('currentReview', function (value) {
-        $scope.review = $scope.reviews[value];
+        if ($scope.reviews) {
+            $scope.review = $scope.reviews[value];
+        }
     });
     $scope.nextReview = function () {
         $scope.currentReview++;

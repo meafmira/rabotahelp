@@ -20,8 +20,8 @@ return array
 			 */
 			'hostname'   => 'localhost',
 			'database'   => 'rabotahelp',
-			'username'   => 'root',
-			'password'   => '',
+			'username'   => 'rabotahelp',
+			'password'   => '2303olna',
 			'persistent' => TRUE,
 		),
 		'table_prefix' => '',
