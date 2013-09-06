@@ -17,6 +17,7 @@
     <script src="/public/js/angular.min.js"></script>
     <script src="/public/js/ui-bootstrap-custom-0.5.0.min.js"></script>
     <script src="/public/js/ui-bootstrap-custom-tpls-0.5.0.min.js"></script>
+    <script src="/public/js/oi.file.js"></script>
     <script src="/public/js/app.js"></script>
     <!--[if lte IE 9]>
     <script src="/public/js/ie.placeholder.js"></script>

@@ -1,3 +1,4 @@
 ﻿application/cache/*
 application/logs/*
 .idea/
+public/upload/*

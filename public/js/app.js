@@ -1,4 +1,4 @@
-var app = angular.module('rabotahelp', ['ui.bootstrap']);
+var app = angular.module('rabotahelp', ['ui.bootstrap', 'oi.file']);
 
 function CallCtrl($scope, $http, dialog) {
     $scope.sendCall = function () {
@@ -18,7 +18,7 @@ function CallCtrl($scope, $http, dialog) {
 function ReviewCtrl($scope, $http, dialog) {
     $scope.sendReview = function () {
         $scope.reviewed = true;
-        $http.post('/reviews', 'name=' + $scope.reviewName + '&prof=' + $scope.reviewProf + '&text=' + $scope.reviewText)
+        $http.post('/reviews', 'name=' + $scope.reviewName + '&prof=' + $scope.reviewProf + '&text=' + $scope.reviewText + '&photo=' + $scope.filename)
             .success(function (resp) {
             })
             .error(function () {
@@ -28,22 +28,33 @@ function ReviewCtrl($scope, $http, dialog) {
     $scope.close = function () {
         dialog.close();
     }
+    $scope.file = {}; //Model
+    $scope.filename = '';
+    $scope.options = {
+        change: function (file) {
+            file.$upload('/upload/', $scope.file, {allowedType: ["jpeg", "jpg", "png"]})
+                .then(function (resp) {
+                    $scope.filename = resp.data.filename;
+                });
+        }
+    }
+
 }
 
 function MainCtrl($scope, $dialog, $http) {
     // Inlined template for demo
     var callTemplate = '<div class="modal-callme">' +
-        '<h3>Заказать звонок</h3>' +
-        '<div class="message" ng-show="called">' +
-        'Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.' +
-        '</div>' +
-        '<div ng-hide="called">' +
-        '<form ng-submit="sendCall()" name="callForm">' +
-        '<input type="text" ng-model="callName" class="form-control" placeholder="Ваше имя" required>' +
-        '<input type="text" ng-model="callPhone" class="form-control" placeholder="Ваш телефон" required><br>' +
-        '<input type="submit" value="Заказать" class="btn btn-large" ng-click="check($event)">' +
-        '</form></div>' +
-        '<a href="#" class="btn btn-large" ng-click="close()" ng-show="called">Закрыть</a>' +
+            '<h3>Заказать звонок</h3>' +
+            '<div class="message" ng-show="called">' +
+            'Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.' +
+            '</div>' +
+            '<div ng-hide="called">' +
+            '<form ng-submit="sendCall()" name="callForm">' +
+            '<input type="text" ng-model="callName" class="form-control" placeholder="Ваше имя" required>' +
+            '<input type="text" ng-model="callPhone" class="form-control" placeholder="Ваш телефон" required><br>' +
+            '<input type="submit" value="Заказать" class="btn btn-large" ng-click="check($event)">' +
+            '</form></div>' +
+            '<a href="#" class="btn btn-large" ng-click="close()" ng-show="called">Закрыть</a>' +
         '</div>',
         reviewTemplate = '<div class="modal-review">' +
             '<h3>Отзыв</h3>' +
@@ -54,8 +65,8 @@ function MainCtrl($scope, $dialog, $http) {
             '<form ng-submit="sendReview()" name="reviewForm">' +
             '<input ng-model="reviewName" required type="text" class="form-control form-control-block" placeholder="Ваше имя">' +
             '<input ng-model="reviewProf" type="text" class="form-control form-control-block" placeholder="Ваша профессия">' +
-            '<div style="text-align: left"><label>Ваше фото</label> <input type="file"></div>' +
-            '<textarea ng-minlength="50" ng-maxlength="250" ng-model="reviewText" required class="form-control form-control-block" placeholder="Отзыв"></textarea>' +
+            '<div style="text-align: left"><label>Ваше фото</label> <input type="file" oi-file="options"></div>' +
+            '<textarea ng-maxlength="250" ng-model="reviewText" required class="form-control form-control-block" placeholder="Отзыв"></textarea>' +
             '<input type="submit" value="Отправить отзыв" class="btn btn-large" ng-click="check($event)">' +
             '</form></div>' +
             '<a href="#" class="btn btn-large" ng-click="close()" ng-show="reviewed">Закрыть</a>' +
@@ -110,6 +121,11 @@ function MainCtrl($scope, $dialog, $http) {
     $http.get('/reviews')
         .success(function (resp) {
             $scope.reviews = resp;
+            for (var i in $scope.reviews) {
+                if ($scope.reviews[i].photo == '') {
+                    $scope.reviews[i].photo = '/public/images/no_avatar.jpg';
+                }
+            }
             $scope.review = $scope.reviews[0];
         });
     $scope.$watch('currentReview', function (value) {

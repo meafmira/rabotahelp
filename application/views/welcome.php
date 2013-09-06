@@ -221,7 +221,7 @@
                 <div class="replies-slider-container">
                     <div class="replies-slider-slides">
                         <div class="replies-slider-slide">
-                            <img class="reply-avatar" src="/public/images/no_avatar.jpg">
+                            <img class="reply-avatar" ng-src="{{review.photo}}">
                             <div class="reply-text">
                                 <div class="lquote"></div>
                                 {{review.review}}
@@ -242,7 +242,7 @@
                 </div>
                 <div ng-hide="consulted">
                 <input required ng-model="name" type="text" placeholder="Ваше имя" class="form-control form-control-block">
-                <input type="text" placeholder="Skype" class="form-control form-control-block">
+                <input type="text" ng-model="skype" placeholder="Skype" class="form-control form-control-block">
                 <input required ng-model="email" type="email" placeholder="E-mail" class="form-control form-control-block">
                 <input type="submit" value="Записаться" class="btn btn-medium btn-block" ng-click="check($event)">
                 </div>

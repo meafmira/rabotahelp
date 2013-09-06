@@ -90,7 +90,7 @@ if (isset($_SERVER['KOHANA_ENV']))
  * - boolean  expose      set the X-Powered-By header                        FALSE
  */
 Kohana::init(array(
-	'base_url'   => '/kohana/',
+	'base_url'   => '/',
 ));
 
 /**
@@ -102,6 +102,8 @@ Kohana::$log->attach(new Log_File(APPPATH.'logs'));
  * Attach a file reader to config. Multiple readers are supported.
  */
 Kohana::$config->attach(new Config_File);
+
+Cookie::$salt = '1234567890';
 
 /**
  * Enable modules. Modules are referenced by a relative or absolute path.
@@ -122,6 +124,12 @@ Kohana::modules(array(
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
  * defaults for the URI.
  */
+
+Route::set('upload', 'upload')
+    ->defaults(array(
+        'controller' => 'upload',
+        'action'     => 'index'
+    ));
 Route::set('reviews', 'reviews')
     ->defaults(array(
         'controller' => 'reviews',
