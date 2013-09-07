@@ -723,7 +723,7 @@ footer a {
 .modal-callme .form-control {
     margin: 20px 10px 20px;
 }
-.check input.ng-invalid, .check textarea.ng-invalid {
+.ng-dirty input.ng-invalid, .ng-dirty textarea.ng-invalid {
     border-color: red;
 }
 .placeholder {

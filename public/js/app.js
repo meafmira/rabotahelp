@@ -107,7 +107,10 @@ function MainCtrl($scope, $dialog, $http) {
         $event.preventDefault();
     }
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
-    $scope.sendConsult = function () {
+    $scope.name = '';
+    $scope.skype = '';
+    $scope.email = '';
+    $scope.sendConsult = function (is) {
         $scope.consulted = true;
         $http.post('/consults', 'name=' + $scope.name + '&skype=' + $scope.skype + '&email=' + $scope.email)
             .success(function (resp) {
